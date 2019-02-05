@@ -1,0 +1,17 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>
+            GitGudLogs
+        </h1>
+        <ul>
+            {% for logs in logs %}
+                <li>{{ logs.date }}</li>
+                <li>{{ logs.category }}</li>
+                <li>{{ logs.improvement }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
