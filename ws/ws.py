@@ -20,10 +20,16 @@ app.config['MONGO_DBNAME'] = 'gitgudlogs'
 app.config["MONGO_URI"] = "mongodb://localhost:32768/gitgudlogs"
 mongo = PyMongo(app)
 
-class ReusableForm(Form):
+#Forms checkers declaration 
+class LogForm(Form):
   date = DateField('date:', validators=[validators.required()])
   category = TextField('category:', validators=[validators.required()])
   improvement = TextField('improvement:', validators=[validators.required()])
+class TipForm(Form):
+  date = DateField('date:', validators=[validators.required()])
+  category = TextField('category:', validators=[validators.required()])
+  tip = TextField('tip:', validators=[validators.required()])
+
 
 # Create a URL route in our application for "/"
 @app.route('/')
@@ -38,16 +44,16 @@ def random():
 #route to log in your improvements
 @app.route('/sLogs', methods=['GET', 'POST'])
 def save_log():
-  form = ReusableForm(request.form)
+  form = LogForm(request.form)
   if request.method == 'POST':
     date=request.form['date']
     category=request.form['category']
     improvement=request.form['improvement']
   if form.validate():
-    # Save the comment here.
+    # Save the log here.
     log = mongo.db.logs.insert_one({'date': date, 'category': category, 'improvement': improvement})
-    flash('Thanks for registration ' + category)
-    return render_template('log.html', form=form)
+    flash('Thanks for this log about ' + category)
+    return render_template('sLog.html', form=form)
 
   else:
     flash('Error: All the form fields are required. ')
@@ -65,6 +71,25 @@ def all_logs():
     logs = list(mongo.db.logs.find())
     return render_template('allLogs.html', logs=logs)
 
+
+#route to log in your improvements
+@app.route('/sTips', methods=['GET', 'POST'])
+def save_tip():
+  form = TipForm(request.form)
+  if request.method == 'POST':
+    date=request.form['date']
+    category=request.form['category']
+    tip=request.form['tip']
+  if form.validate():
+    # Save the tip here.
+    log = mongo.db.tips.insert_one({'date': date, 'category': category, 'tip': tip})
+    flash('Thanks for this new tip about ' + category)
+    return render_template('sTip.html', form=form)
+
+  else:
+    flash('Error: All the form fields are required. ')
+    return render_template('sTip.html', form=form)
+
 #route to see the daily tips
 @app.route('/dTips')
 def daily_tips():
@@ -73,7 +98,8 @@ def daily_tips():
 #route to see all the tips in the database
 @app.route('/aTips')
 def all_tips():
-    return render_template('allTips.html')
+    tips = list(mongo.db.tips.find())
+    return render_template('allTips.html', tips=tips)
 
 #route to get all logs from the base and display it in json
 @app.route('/getLogs', methods=['GET'])

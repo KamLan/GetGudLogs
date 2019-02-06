@@ -26,12 +26,46 @@
                 <a class="nav-item nav-link" href="/dLogs">Daily Log</a>
                 <a class="nav-item nav-link" href="/rand">Random</a>
                 <a class="nav-item nav-link" href="/aLogs">All logs</a>
-                <a class="nav-item nav-link" href="/sTips">Add a tip</a>
-                <a class="nav-item nav-link active" href="/dTips">Daily tips</a>
+                <a class="nav-item nav-link active" href="/sTips">Add a tip</a>
+                <a class="nav-item nav-link" href="/dTips">Daily tips</a>
                 <a class="nav-item nav-link" href="/aTips">All tips</a>
             </div>
         </div>
     </nav>
+    <div class="container">
+        <h2>Flask Web Form</h2>
+        <form action="" method="post" role="form">
+            {{ form.csrf }}
+            <div class="form-group">
+                <label for="Date:"></label>
+                <input type="date" class="form-control" id="date" name="date">
+
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Category">
+
+                <label for="tip">Tip:</label>
+                <input type="text" class="form-control" id="tip" name="tip" placeholder="What did you discover ?">
+
+            </div>
+            <button type="submit" class="btn btn-success">Save this tip !</button>
+        </form>{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for message in messages %}
+        {% if "Error" not in message[1]: %}
+        <div class="alert alert-info">
+            <strong>Success! </strong> {{ message[1] }}</div>
+        {% endif %}
+
+        {% if "Error" in message[1]: %}
+        <div class="alert alert-warning">
+            {{ message[1] }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </div>
 </body>
 
 </html>

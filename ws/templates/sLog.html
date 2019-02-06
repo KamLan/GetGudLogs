@@ -26,6 +26,7 @@
                 <a class="nav-item nav-link" href="/dLogs">Daily Log</a>
                 <a class="nav-item nav-link" href="/rand">Random</a>
                 <a class="nav-item nav-link" href="/aLogs">All logs</a>
+                <a class="nav-item nav-link" href="/sTips">Add a tip</a>
                 <a class="nav-item nav-link" href="/dTips">Daily tips</a>
                 <a class="nav-item nav-link" href="/aTips">All tips</a>
             </div>
@@ -46,8 +47,9 @@
                 <input type="text" class="form-control" id="improvement" name="improvement" placeholder="What did you learn ?">
 
             </div>
-            <button type="submit" class="btn btn-success">Sign Up</button>
-        </form>{% with messages = get_flashed_messages(with_categories=true) %}
+            <button type="submit" class="btn btn-success">Log this up !</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
 
         {% for message in messages %}

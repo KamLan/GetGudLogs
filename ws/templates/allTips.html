@@ -26,11 +26,42 @@
                 <a class="nav-item nav-link" href="/dLogs">Daily Log</a>
                 <a class="nav-item nav-link" href="/rand">Random</a>
                 <a class="nav-item nav-link" href="/aLogs">All logs</a>
+                <a class="nav-item nav-link" href="/sTips">Add a tip</a>
                 <a class="nav-item nav-link" href="/dTips">Daily tips</a>
                 <a class="nav-item nav-link active" href="/aTips">All tips</a>
             </div>
         </div>
     </nav>
+
+
+    <div class="container">
+            <div class="row">
+                <div class="card-columns">
+                    {% for tip in tips %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-9 col-xs-9">
+                                    <h4 class="card-title">{{ tip.category }}</h4>
+                                </div>
+                                <div class="col-sm-12">
+                                    <small class="text-muted">
+                                        <b>{{ tip.date }}</b>
+                                    </small>
+                                </div>
+                            </div>
+                            <p class="card-text">
+                                <b>Tip:</b> {{ tip.tip }}
+                            </p>
+                            <a href="#" class="card-link">Check the tip's category</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
 </body>
 
 </html>

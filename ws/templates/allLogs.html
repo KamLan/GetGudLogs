@@ -26,24 +26,41 @@
                 <a class="nav-item nav-link" href="/dLogs">Daily Log</a>
                 <a class="nav-item nav-link" href="/rand">Random</a>
                 <a class="nav-item nav-link active" href="/aLogs">All logs</a>
+                <a class="nav-item nav-link" href="/sTips">Add a tip</a>
                 <a class="nav-item nav-link" href="/dTips">Daily tips</a>
                 <a class="nav-item nav-link" href="/aTips">All tips</a>
             </div>
         </div>
     </nav>
-    <ul>
-        {% for logs in logs %}
-        <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <h6 class="card-title"><b>Date:</b> {{ logs.date }}</h6>
-                  <h5 class="card-subtitle mb-2 text-muted"><b>Category:</b> {{ logs.category }}</h5>
-                  <p class="card-text"><b>Improvement:</b> {{ logs.improvement }}</p>
-                  <a href="#" class="card-link">Check the category improvement</a>
-                  <a href="#" class="card-link">Another link</a>
+
+    <div class="container">
+        <div class="row">
+            <div class="card-columns">
+                {% for log in logs %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-9 col-xs-9">
+                                <h4 class="card-title">{{ log.category }}</h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <small class="text-muted">
+                                    <b>{{ log.date }}</b>
+                                </small>
+                            </div>
+                        </div>
+                        <p class="card-text">
+                            <b>Improvement:</b> {{ log.improvement }}
+                        </p>
+                        <a href="#" class="card-link">Check the category improvement</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
                 </div>
-              </div>
-        {% endfor %}
-    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

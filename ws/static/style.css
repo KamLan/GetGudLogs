@@ -1,0 +1,32 @@
+.container {
+    width: 98%;
+  }
+  
+  .logo {
+    border-radius: 50%;
+  }
+  
+  .text-muted a {
+    color: #989898;
+  }
+  
+  .text-muted a:hover {
+    color: grey;
+  }
+  
+  .fa a:active, a:hover, a:visited {
+    text-decoration: none;
+  }
+  
+  /* Tool Colors */
+  .general {
+    background-color: #0095af;
+  }
+  
+  .general .card-title {
+    color: #f3f3f3;
+  }
+  
+  .general .card-text {
+    color: #f3f3f3;
+  }
