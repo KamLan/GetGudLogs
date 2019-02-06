@@ -36,8 +36,8 @@ def random():
     return render_template('random.html')
 
 #route to log in your improvements
-@app.route('/saveLogs', methods=['GET', 'POST'])
-def log():
+@app.route('/sLogs', methods=['GET', 'POST'])
+def save_log():
   form = ReusableForm(request.form)
   if request.method == 'POST':
     date=request.form['date']
@@ -51,10 +51,12 @@ def log():
 
   else:
     flash('Error: All the form fields are required. ')
-    return render_template('log.html', form=form)
+    return render_template('sLog.html', form=form)
 
 #route to see the daily logs
 @app.route('/dLogs')
+def daily_logs():
+  return render_template('dLog.html')
 
 
 #route to see every logs in the database

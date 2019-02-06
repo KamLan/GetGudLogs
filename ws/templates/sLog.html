@@ -22,15 +22,49 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/sLogs">Log your progress</a>
+                <a class="nav-item nav-link active" href="/sLogs">Log your progress</a>
                 <a class="nav-item nav-link" href="/dLogs">Daily Log</a>
                 <a class="nav-item nav-link" href="/rand">Random</a>
                 <a class="nav-item nav-link" href="/aLogs">All logs</a>
                 <a class="nav-item nav-link" href="/dTips">Daily tips</a>
-                <a class="nav-item nav-link active" href="/aTips">All tips</a>
+                <a class="nav-item nav-link" href="/aTips">All tips</a>
             </div>
         </div>
     </nav>
+    <div class="container">
+        <h2>Flask Web Form</h2>
+        <form action="" method="post" role="form">
+            {{ form.csrf }}
+            <div class="form-group">
+                <label for="Date:"></label>
+                <input type="date" class="form-control" id="date" name="date">
+
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Category">
+
+                <label for="improvement">Improvement:</label>
+                <input type="text" class="form-control" id="improvement" name="improvement" placeholder="What did you learn ?">
+
+            </div>
+            <button type="submit" class="btn btn-success">Sign Up</button>
+        </form>{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for message in messages %}
+        {% if "Error" not in message[1]: %}
+        <div class="alert alert-info">
+            <strong>Success! </strong> {{ message[1] }}</div>
+        {% endif %}
+
+        {% if "Error" in message[1]: %}
+        <div class="alert alert-warning">
+            {{ message[1] }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </div>
 </body>
 
 </html>
